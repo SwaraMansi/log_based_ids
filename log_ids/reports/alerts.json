@@ -1,0 +1,42 @@
+[
+    {
+        "type": "Brute Force Attempt",
+        "ip": "192.168.1.10",
+        "time": "2025-11-20 16:03:48.025125",
+        "log": "Failed password for root from 192.168.1.10 port 44522"
+    },
+    {
+        "type": "Brute Force Attempt",
+        "ip": "192.168.1.10",
+        "time": "2025-11-20 16:03:48.026397",
+        "log": "Failed password for admin from 192.168.1.10 port 44525"
+    },
+    {
+        "type": "Port Scan Attempt",
+        "ip": "192.168.1.50",
+        "time": "2025-11-20 16:03:48.026417",
+        "log": "Did not receive identification string from 192.168.1.50"
+    },
+    {
+        "type": "Unauthorized Admin Access",
+        "time": "2025-11-20 16:03:48.026430",
+        "log": "sudo: user : authentication failure"
+    },
+    {
+        "type": "Brute Force Attempt",
+        "ip": "10.0.0.8",
+        "time": "2025-11-20 16:03:48.026441",
+        "log": "Failed password for invalid user test from 10.0.0.8 port 39222"
+    },
+    {
+        "type": "Unauthorized Admin Access",
+        "time": "2025-11-20 16:03:48.026451",
+        "log": "sudo: test-user : authentication failure"
+    },
+    {
+        "type": "Port Scan Attempt",
+        "ip": "45.67.90.12",
+        "time": "2025-11-20 16:03:48.026458",
+        "log": "Did not receive identification string from 45.67.90.12"
+    }
+]

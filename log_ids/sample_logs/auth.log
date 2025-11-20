@@ -1,0 +1,8 @@
+Failed password for root from 192.168.1.10 port 44522
+Failed password for admin from 192.168.1.10 port 44525
+Did not receive identification string from 192.168.1.50
+sudo: user : authentication failure
+Connection closed by 45.33.22.11 port 55222
+Failed password for invalid user test from 10.0.0.8 port 39222
+sudo: test-user : authentication failure
+Did not receive identification string from 45.67.90.12

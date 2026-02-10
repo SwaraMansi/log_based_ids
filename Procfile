@@ -1,1 +1,1 @@
-worker: python ids.py
+web: python startup.py

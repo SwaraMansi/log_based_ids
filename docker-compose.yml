@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ids:
+    build: .
+    container_name: log-based-ids
+    volumes:
+      - ./reports:/app/reports
+      - ./sample_logs:/app/sample_logs
+    environment:
+      - LOG_FILE=sample_logs/auth.log
+      - REPORT_FILE=reports/alerts.json
+    networks:
+      - ids-network
+
+networks:
+  ids-network:
+    driver: bridge

@@ -1,0 +1,54 @@
+name: Deploy IDS to Cloud
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run IDS Analysis
+      run: python ids.py
+    
+    - name: Upload Alerts
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-alerts
+        path: reports/alerts.json
+        retention-days: 30
+    
+    - name: Deploy to AWS Lambda (optional)
+      if: secrets.AWS_ACCESS_KEY_ID != ''
+      run: |
+        pip install boto3
+        python -c "
+        import boto3
+        import json
+        with open('reports/alerts.json') as f:
+            alerts = json.load(f)
+        # Send alerts to SNS topic for notification
+        sns = boto3.client('sns', region_name='us-east-1')
+        sns.publish(
+            TopicArn='${{ secrets.SNS_TOPIC_ARN }}',
+            Subject='IDS Alert Report',
+            Message=json.dumps(alerts, indent=2)
+        )
+        "
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
